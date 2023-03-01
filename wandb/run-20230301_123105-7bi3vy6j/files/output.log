@@ -1,7 +1,0 @@
-Epoch 1
----------------
-Training loss: 2.306022 [  128/35000]
-Training loss: 1.689805 [12928/35000]
-Training loss: 1.773968 [25728/35000]
-Validation error:
- Accuracy: 41.3, Avg loss: 1.609639
