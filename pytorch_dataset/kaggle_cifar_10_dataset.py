@@ -5,7 +5,7 @@ from torchvision import datasets
 from torchvision.io import read_image
 from torch.utils.data import Dataset, DataLoader, random_split
 from torchvision.transforms import ToTensor
-from torchvision.transforms.functional import rgb_to_grayscale
+from torchvision.transforms.functional import convert_image_dtype
 import matplotlib.pyplot as plt
 
 class KaggleCIFAR10Dataset(Dataset):
@@ -27,6 +27,7 @@ class KaggleCIFAR10Dataset(Dataset):
         pandas_index = int(img_name.split('.')[0])
         img_path = os.path.join(self.img_dir, img_name)
         image = read_image(img_path)
+        image = convert_image_dtype(image, dtype = torch.float32) # image is scaled to [0, 1]
         label = self.img_labels.loc[pandas_index].values[0]
         if self.transform:
             image = self.transform(image)
