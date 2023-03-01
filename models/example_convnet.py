@@ -1,9 +1,8 @@
+import wandb
 import torch
 import torch.nn as nn
-import torch.optim as optim
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
 
 import sys
 sys.path.append("./")
@@ -33,6 +32,7 @@ class ExampleConvnet(nn.Module):
         return self.logits(x)
 
 if __name__ == '__main__':
+
     # Dataset
     SEED = 0; set_seeds(SEED)
     IMG_DIR = 'cifar-10/train'
@@ -50,17 +50,25 @@ if __name__ == '__main__':
     NUM_WORKERS = 4
 
     # Training
-    if torch.backends.mps.is_available():
-        DEVICE = torch.device('mps')
-    elif torch.cuda.is_available():
-        DEVICE = torch.device('cuda')
-    else:
-        DEVICE = torch.device('cpu')
+    DEVICE = torch.device('cpu')
     LEARNING_RATE = 1e-3
     N_EPOCHS = 30
     LOSS_FN = nn.CrossEntropyLoss()
     OPTIMIZER = torch.optim.Adam
-    DEVICE = torch.device('cpu')
+
+    # Wandb
+    wandb.init(
+        project = 'deep_learning_msc_project_1',
+        entity = 'sobieskibj',
+        group = 'test',
+        name = 'example_convnet',
+        config = {
+            "seed": SEED,
+            "batch_size": BATCH_SIZE,
+            "epochs": N_EPOCHS
+        }
+    )
+
     dataset = KaggleCIFAR10Dataset(IMG_DIR, LABELS_FILE, TRANSFORM)
     train_dataset, val_dataset = dataset.get_train_val_splits(TRAIN_FRACTION)
     train_dataloader = DataLoader(train_dataset, BATCH_SIZE, SHUFFLE, num_workers = NUM_WORKERS)
@@ -73,6 +81,8 @@ if __name__ == '__main__':
         print(f"Epoch {epoch+1}\n---------------")
         training_loop(train_dataloader, model, LOSS_FN, OPTIMIZER, DEVICE)
         val_loop(val_dataloader, model, LOSS_FN, DEVICE)
+        
+    wandb.finish()
 
 
     

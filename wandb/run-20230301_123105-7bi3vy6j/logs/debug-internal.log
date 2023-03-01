@@ -1,0 +1,234 @@
+2023-03-01 12:31:05,300 INFO    StreamThr :1962 [internal.py:wandb_internal():87] W&B internal server running at pid: 1962, started at: 2023-03-01 12:31:05.300103
+2023-03-01 12:31:05,303 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status
+2023-03-01 12:31:05,313 INFO    WriterThread:1962 [datastore.py:open_for_write():85] open: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/run-7bi3vy6j.wandb
+2023-03-01 12:31:05,313 DEBUG   SenderThread:1962 [sender.py:send():336] send: header
+2023-03-01 12:31:05,340 DEBUG   SenderThread:1962 [sender.py:send():336] send: run
+2023-03-01 12:31:05,893 INFO    SenderThread:1962 [dir_watcher.py:__init__():216] watching files in: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files
+2023-03-01 12:31:05,893 INFO    SenderThread:1962 [sender.py:_start_run_threads():1067] run started: 7bi3vy6j with start time 1677670265.304855
+2023-03-01 12:31:05,893 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: summary_record
+2023-03-01 12:31:05,894 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-summary.json with policy end
+2023-03-01 12:31:05,896 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: check_version
+2023-03-01 12:31:05,897 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: check_version
+2023-03-01 12:31:06,044 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: run_start
+2023-03-01 12:31:06,058 DEBUG   HandlerThread:1962 [system_info.py:__init__():31] System info init
+2023-03-01 12:31:06,058 DEBUG   HandlerThread:1962 [system_info.py:__init__():46] System info init done
+2023-03-01 12:31:06,058 INFO    HandlerThread:1962 [system_monitor.py:start():151] Starting system monitor
+2023-03-01 12:31:06,058 INFO    SystemMonitor:1962 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2023-03-01 12:31:06,058 INFO    HandlerThread:1962 [system_monitor.py:probe():172] Collecting system info
+2023-03-01 12:31:06,059 INFO    SystemMonitor:1962 [interfaces.py:start():168] Started cpu
+2023-03-01 12:31:06,059 DEBUG   HandlerThread:1962 [system_info.py:probe():195] Probing system
+2023-03-01 12:31:06,059 INFO    SystemMonitor:1962 [interfaces.py:start():168] Started disk
+2023-03-01 12:31:06,061 INFO    SystemMonitor:1962 [interfaces.py:start():168] Started gpuapple
+2023-03-01 12:31:06,063 INFO    SystemMonitor:1962 [interfaces.py:start():168] Started memory
+2023-03-01 12:31:06,063 INFO    SystemMonitor:1962 [interfaces.py:start():168] Started network
+2023-03-01 12:31:06,069 DEBUG   HandlerThread:1962 [system_info.py:_probe_git():180] Probing git
+2023-03-01 12:31:06,097 DEBUG   HandlerThread:1962 [system_info.py:_probe_git():188] Probing git done
+2023-03-01 12:31:06,097 DEBUG   HandlerThread:1962 [system_info.py:probe():241] Probing system done
+2023-03-01 12:31:06,097 DEBUG   HandlerThread:1962 [system_monitor.py:probe():181] {'os': 'macOS-13.2.1-arm64-arm-64bit', 'python': '3.10.9', 'heartbeatAt': '2023-03-01T11:31:06.059515', 'startedAt': '2023-03-01T11:31:05.284021', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/models/example_convnet.py', 'codePath': 'models/example_convnet.py', 'git': {'remote': 'https://github.com/sobieskibj/deep-learning_project-1.git', 'commit': '0e430c85867c141e9eadc7940ac0917e82e360df'}, 'email': 'sobieski.bartlomiej.jan@gmail.com', 'root': '/Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1', 'host': 'MacBook-Pro-Bartomiej.local', 'username': 'bartlomiejsobieski', 'executable': '/Users/bartlomiejsobieski/Osobisty/miniconda3/envs/deep_learning_msc/bin/python', 'cpu_count': 8, 'cpu_count_logical': 8, 'disk': {'total': 228.27386474609375, 'used': 8.327995300292969}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 16.0}}
+2023-03-01 12:31:06,097 INFO    HandlerThread:1962 [system_monitor.py:probe():182] Finished collecting system info
+2023-03-01 12:31:06,097 INFO    HandlerThread:1962 [system_monitor.py:probe():185] Publishing system info
+2023-03-01 12:31:06,097 DEBUG   HandlerThread:1962 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-03-01 12:31:06,098 DEBUG   HandlerThread:1962 [system_info.py:_save_pip():67] Saving pip packages done
+2023-03-01 12:31:06,098 DEBUG   HandlerThread:1962 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-03-01 12:31:06,897 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/conda-environment.yaml
+2023-03-01 12:31:06,898 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/requirements.txt
+2023-03-01 12:31:06,898 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-summary.json
+2023-03-01 12:31:07,034 DEBUG   HandlerThread:1962 [system_info.py:_save_conda():86] Saving conda packages done
+2023-03-01 12:31:07,035 INFO    HandlerThread:1962 [system_monitor.py:probe():187] Finished publishing system info
+2023-03-01 12:31:07,036 DEBUG   SenderThread:1962 [sender.py:send():336] send: files
+2023-03-01 12:31:07,036 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-metadata.json with policy now
+2023-03-01 12:31:07,039 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: stop_status
+2023-03-01 12:31:07,039 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: stop_status
+2023-03-01 12:31:07,643 INFO    wandb-upload_0:1962 [upload_job.py:push():138] Uploaded file /var/folders/n3/g92g8vvs2k7g2d3d6s4jcl0w0000gn/T/tmpimtp317uwandb/dmr8qsbr-wandb-metadata.json
+2023-03-01 12:31:07,739 DEBUG   SenderThread:1962 [sender.py:send():336] send: telemetry
+2023-03-01 12:31:07,897 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/conda-environment.yaml
+2023-03-01 12:31:07,897 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-metadata.json
+2023-03-01 12:31:07,897 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log
+2023-03-01 12:31:09,907 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log
+2023-03-01 12:31:10,754 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:11,922 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: partial_history
+2023-03-01 12:31:11,923 DEBUG   SenderThread:1962 [sender.py:send():336] send: history
+2023-03-01 12:31:11,923 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: summary_record
+2023-03-01 12:31:11,924 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-summary.json with policy end
+2023-03-01 12:31:12,922 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-summary.json
+2023-03-01 12:31:13,925 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log
+2023-03-01 12:31:15,938 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:19,522 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: partial_history
+2023-03-01 12:31:19,523 DEBUG   SenderThread:1962 [sender.py:send():336] send: history
+2023-03-01 12:31:19,523 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: summary_record
+2023-03-01 12:31:19,524 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-summary.json with policy end
+2023-03-01 12:31:19,947 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-summary.json
+2023-03-01 12:31:21,528 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:21,953 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log
+2023-03-01 12:31:22,041 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:26,547 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:27,056 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:27,722 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: partial_history
+2023-03-01 12:31:27,722 DEBUG   SenderThread:1962 [sender.py:send():336] send: history
+2023-03-01 12:31:27,723 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: summary_record
+2023-03-01 12:31:27,723 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-summary.json with policy end
+2023-03-01 12:31:27,971 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-summary.json
+2023-03-01 12:31:29,977 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log
+2023-03-01 12:31:31,744 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:32,078 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:36,768 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:37,098 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:38,016 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/config.yaml
+2023-03-01 12:31:42,113 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:42,141 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:47,131 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:47,153 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:52,150 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:52,174 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:31:57,167 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:31:57,195 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:32:02,187 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:32:02,214 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:32:06,068 DEBUG   SystemMonitor:1962 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2023-03-01 12:32:06,069 DEBUG   SenderThread:1962 [sender.py:send():336] send: telemetry
+2023-03-01 12:32:06,070 DEBUG   SenderThread:1962 [sender.py:send():336] send: stats
+2023-03-01 12:32:07,198 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:32:08,086 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:32:09,150 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/config.yaml
+2023-03-01 12:32:12,217 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:32:13,345 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:32:17,236 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:32:18,367 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:32:22,252 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: keepalive
+2023-03-01 12:32:23,387 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:32:26,275 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: partial_history
+2023-03-01 12:32:26,278 DEBUG   SenderThread:1962 [sender.py:send():336] send: history
+2023-03-01 12:32:26,278 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: summary_record
+2023-03-01 12:32:26,281 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-summary.json with policy end
+2023-03-01 12:32:26,282 DEBUG   SenderThread:1962 [sender.py:send():336] send: telemetry
+2023-03-01 12:32:26,283 DEBUG   SenderThread:1962 [sender.py:send():336] send: exit
+2023-03-01 12:32:26,283 INFO    SenderThread:1962 [sender.py:send_exit():559] handling exit code: 0
+2023-03-01 12:32:26,284 INFO    SenderThread:1962 [sender.py:send_exit():561] handling runtime: 80
+2023-03-01 12:32:26,285 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-summary.json with policy end
+2023-03-01 12:32:26,285 INFO    SenderThread:1962 [sender.py:send_exit():567] send defer
+2023-03-01 12:32:26,285 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,285 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 0
+2023-03-01 12:32:26,286 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,286 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 0
+2023-03-01 12:32:26,286 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 1
+2023-03-01 12:32:26,286 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,286 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 1
+2023-03-01 12:32:26,287 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,287 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 1
+2023-03-01 12:32:26,287 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 2
+2023-03-01 12:32:26,287 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,287 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 2
+2023-03-01 12:32:26,287 INFO    HandlerThread:1962 [system_monitor.py:finish():161] Stopping system monitor
+2023-03-01 12:32:26,308 DEBUG   SystemMonitor:1962 [system_monitor.py:_start():137] Finished system metrics aggregation loop
+2023-03-01 12:32:26,308 DEBUG   SystemMonitor:1962 [system_monitor.py:_start():141] Publishing last batch of metrics
+2023-03-01 12:32:26,308 INFO    HandlerThread:1962 [interfaces.py:finish():175] Joined cpu
+2023-03-01 12:32:26,309 INFO    HandlerThread:1962 [interfaces.py:finish():175] Joined disk
+2023-03-01 12:32:26,309 INFO    HandlerThread:1962 [interfaces.py:finish():175] Joined gpuapple
+2023-03-01 12:32:26,309 INFO    HandlerThread:1962 [interfaces.py:finish():175] Joined memory
+2023-03-01 12:32:26,309 INFO    HandlerThread:1962 [interfaces.py:finish():175] Joined network
+2023-03-01 12:32:26,309 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,309 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 2
+2023-03-01 12:32:26,309 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 3
+2023-03-01 12:32:26,309 DEBUG   SenderThread:1962 [sender.py:send():336] send: stats
+2023-03-01 12:32:26,309 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,309 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 3
+2023-03-01 12:32:26,310 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,310 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 3
+2023-03-01 12:32:26,310 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 4
+2023-03-01 12:32:26,310 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,310 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 4
+2023-03-01 12:32:26,310 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,310 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 4
+2023-03-01 12:32:26,310 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 5
+2023-03-01 12:32:26,310 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,310 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 5
+2023-03-01 12:32:26,310 DEBUG   SenderThread:1962 [sender.py:send():336] send: summary
+2023-03-01 12:32:26,311 INFO    SenderThread:1962 [sender.py:_save_file():1321] saving file wandb-summary.json with policy end
+2023-03-01 12:32:26,311 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,311 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 5
+2023-03-01 12:32:26,311 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 6
+2023-03-01 12:32:26,311 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,311 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 6
+2023-03-01 12:32:26,311 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,311 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 6
+2023-03-01 12:32:26,315 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: status_report
+2023-03-01 12:32:26,551 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 7
+2023-03-01 12:32:26,551 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:26,552 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 7
+2023-03-01 12:32:26,552 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:26,552 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 7
+2023-03-01 12:32:27,227 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/config.yaml
+2023-03-01 12:32:27,227 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-summary.json
+2023-03-01 12:32:27,284 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: poll_exit
+2023-03-01 12:32:27,901 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 8
+2023-03-01 12:32:27,902 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: poll_exit
+2023-03-01 12:32:27,902 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:27,902 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 8
+2023-03-01 12:32:27,903 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:27,903 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 8
+2023-03-01 12:32:27,913 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 9
+2023-03-01 12:32:27,914 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:27,914 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 9
+2023-03-01 12:32:27,914 DEBUG   SenderThread:1962 [sender.py:send():336] send: artifact
+2023-03-01 12:32:28,231 INFO    Thread-13 :1962 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log
+2023-03-01 12:32:28,289 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: poll_exit
+2023-03-01 12:32:29,637 INFO    wandb-upload_1:1962 [upload_job.py:push():96] Uploaded file /Users/bartlomiejsobieski/Library/Application Support/wandb/artifacts/staging/tmpsawbyy9r
+2023-03-01 12:32:29,658 INFO    wandb-upload_0:1962 [upload_job.py:push():96] Uploaded file /Users/bartlomiejsobieski/Library/Application Support/wandb/artifacts/staging/tmpr6y2sg59
+2023-03-01 12:32:31,117 INFO    SenderThread:1962 [sender.py:send_artifact():1417] sent artifact job-https___github.com_sobieskibj_deep-learning_project-1.git_models_example_convnet.py - {'id': 'QXJ0aWZhY3Q6Mzg0ODEzNzU1', 'digest': 'a548c2a8cadf65e5cb61c9a7292fbed9', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjU1MzQxMTIy', 'latestArtifact': None}, 'version': 'latest'}
+2023-03-01 12:32:31,117 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:31,117 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 9
+2023-03-01 12:32:31,117 INFO    SenderThread:1962 [dir_watcher.py:finish():362] shutting down directory watcher
+2023-03-01 12:32:31,241 INFO    SenderThread:1962 [dir_watcher.py:finish():392] scan: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files
+2023-03-01 12:32:31,242 INFO    SenderThread:1962 [dir_watcher.py:finish():406] scan save: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/requirements.txt requirements.txt
+2023-03-01 12:32:31,242 INFO    SenderThread:1962 [dir_watcher.py:finish():406] scan save: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log output.log
+2023-03-01 12:32:31,245 INFO    SenderThread:1962 [dir_watcher.py:finish():406] scan save: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/config.yaml config.yaml
+2023-03-01 12:32:31,249 INFO    SenderThread:1962 [dir_watcher.py:finish():406] scan save: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-summary.json wandb-summary.json
+2023-03-01 12:32:31,255 INFO    SenderThread:1962 [dir_watcher.py:finish():406] scan save: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/conda-environment.yaml conda-environment.yaml
+2023-03-01 12:32:31,260 INFO    SenderThread:1962 [dir_watcher.py:finish():406] scan save: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-metadata.json wandb-metadata.json
+2023-03-01 12:32:31,260 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 10
+2023-03-01 12:32:31,264 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: poll_exit
+2023-03-01 12:32:31,264 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:31,265 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 10
+2023-03-01 12:32:31,266 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:31,267 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 10
+2023-03-01 12:32:31,267 INFO    SenderThread:1962 [file_pusher.py:finish():162] shutting down file pusher
+2023-03-01 12:32:31,782 INFO    wandb-upload_1:1962 [upload_job.py:push():138] Uploaded file /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/requirements.txt
+2023-03-01 12:32:31,840 INFO    wandb-upload_3:1962 [upload_job.py:push():138] Uploaded file /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/wandb-summary.json
+2023-03-01 12:32:31,841 INFO    wandb-upload_0:1962 [upload_job.py:push():138] Uploaded file /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/output.log
+2023-03-01 12:32:31,849 INFO    wandb-upload_2:1962 [upload_job.py:push():138] Uploaded file /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/config.yaml
+2023-03-01 12:32:31,850 INFO    wandb-upload_4:1962 [upload_job.py:push():138] Uploaded file /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/files/conda-environment.yaml
+2023-03-01 12:32:32,055 INFO    Thread-12 (_thread_body):1962 [sender.py:transition_state():587] send defer: 11
+2023-03-01 12:32:32,056 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:32,056 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 11
+2023-03-01 12:32:32,056 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:32,057 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 11
+2023-03-01 12:32:32,057 INFO    SenderThread:1962 [file_pusher.py:join():167] waiting for file pusher
+2023-03-01 12:32:32,057 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 12
+2023-03-01 12:32:32,057 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:32,057 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 12
+2023-03-01 12:32:32,057 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:32,057 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 12
+2023-03-01 12:32:32,614 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 13
+2023-03-01 12:32:32,614 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:32,615 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 13
+2023-03-01 12:32:32,615 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:32,615 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 13
+2023-03-01 12:32:32,615 INFO    SenderThread:1962 [sender.py:transition_state():587] send defer: 14
+2023-03-01 12:32:32,616 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: defer
+2023-03-01 12:32:32,616 DEBUG   SenderThread:1962 [sender.py:send():336] send: final
+2023-03-01 12:32:32,617 INFO    HandlerThread:1962 [handler.py:handle_request_defer():170] handle defer: 14
+2023-03-01 12:32:32,617 DEBUG   SenderThread:1962 [sender.py:send():336] send: footer
+2023-03-01 12:32:32,617 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: defer
+2023-03-01 12:32:32,617 INFO    SenderThread:1962 [sender.py:send_request_defer():583] handle sender defer: 14
+2023-03-01 12:32:32,620 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: poll_exit
+2023-03-01 12:32:32,620 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: server_info
+2023-03-01 12:32:32,621 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: get_summary
+2023-03-01 12:32:32,621 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: poll_exit
+2023-03-01 12:32:32,621 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: sampled_history
+2023-03-01 12:32:32,622 DEBUG   SenderThread:1962 [sender.py:send_request():363] send_request: server_info
+2023-03-01 12:32:32,842 DEBUG   HandlerThread:1962 [handler.py:handle_request():144] handle_request: shutdown
+2023-03-01 12:32:32,842 INFO    HandlerThread:1962 [handler.py:finish():841] shutting down handler
+2023-03-01 12:32:33,625 INFO    WriterThread:1962 [datastore.py:close():299] close: /Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/wandb/run-20230301_123105-7bi3vy6j/run-7bi3vy6j.wandb
+2023-03-01 12:32:33,844 INFO    SenderThread:1962 [sender.py:finish():1493] shutting down sender
+2023-03-01 12:32:33,844 INFO    SenderThread:1962 [file_pusher.py:finish():162] shutting down file pusher
+2023-03-01 12:32:33,844 INFO    SenderThread:1962 [file_pusher.py:join():167] waiting for file pusher
