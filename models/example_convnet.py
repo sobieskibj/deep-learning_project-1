@@ -20,10 +20,12 @@ class ExampleConvnet(nn.Module):
             nn.ReLU(),
             nn.Conv2d(64, 128, kernel_size = 3, stride = 2, padding = 1),
             nn.ReLU(),
+            nn.Dropout2d(0.5),
             nn.Flatten())
         self.logits = nn.Sequential(
             nn.Linear(2048, 40),
             nn.ReLU(),
+            nn.Dropout(0.5),
             nn.Linear(40, 10))
         
     def forward(self, x):
