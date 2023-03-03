@@ -25,7 +25,6 @@ class ExampleConvnet(nn.Module):
         self.logits = nn.Sequential(
             nn.Linear(2048, 40),
             nn.ReLU(),
-            nn.Dropout(0.5),
             nn.Linear(40, 10))
         
     def forward(self, x):
