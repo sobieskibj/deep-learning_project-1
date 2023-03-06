@@ -5,7 +5,7 @@ from torchvision import datasets
 from torchvision.io import read_image
 from torch.utils.data import Dataset, DataLoader, random_split
 from torchvision.transforms import ToTensor
-from torchvision.transforms.functional import convert_image_dtype
+from torchvision.transforms.functional import convert_image_dtype, rgb_to_grayscale
 import matplotlib.pyplot as plt
 
 class KaggleCIFAR10Dataset(Dataset):
@@ -39,8 +39,12 @@ class KaggleCIFAR10Dataset(Dataset):
         uniq_labels = self.img_labels['label'].unique()
         return {label: idx for idx, label in enumerate(uniq_labels)}
 
-    def get_train_val_splits(self, train_fraction):
-        return random_split(self, (train_fraction, 1 - train_fraction))
+    def get_train_val_dataloaders(self, train_fraction, dataloader_kwargs):
+        train_val_datasets = random_split(self, (train_fraction, 1 - train_fraction))
+        dataloaders = []
+        for dataset in train_val_datasets:
+            dataloaders.append(DataLoader(dataset, **dataloader_kwargs))
+        return dataloaders
 
 if __name__ == '__main__':
     img_dir = 'cifar-10/train'

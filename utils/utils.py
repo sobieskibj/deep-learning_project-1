@@ -38,5 +38,7 @@ def val_loop(dataloader, model, loss_fn, device):
         
     val_loss /= n_batches
     score /= size
-    wandb.log({'val_loss': val_loss, 'val_accuracy': 100 * score})
-    print(f'Validation error: \n Accuracy: {(100 * score):>0.1f}, Avg loss: {val_loss:>8f}\n')
+    accuracy = 100 * score
+    wandb.log({'val_loss': val_loss, 'val_accuracy': accuracy})
+    print(f'Validation error: \n Accuracy: {(accuracy):>0.1f}, Avg loss: {val_loss:>8f}\n')
+    return accuracy
