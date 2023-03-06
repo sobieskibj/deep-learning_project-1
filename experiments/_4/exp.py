@@ -15,14 +15,14 @@ import wandb
 import sys
 sys.path.append("./")
 from pytorch_dataset.kaggle_cifar_10_dataset import KaggleCIFAR10Dataset
-from utils.utils import set_seeds, training_loop, val_loop
+from utils.utils import set_seeds, training_loop, val_loop, set_parameter_requires_grad
 
 if __name__ == '__main__':
     
     PROJECT = 'deep_learning_msc_project_1'
     ENTITY = 'sobieskibj'
     GROUP = 'exp_4_test'
-    NAME = 'resnet_ft'
+    NAME = 'mobilenet-fine_tuning'
 
     config = {
         'dataset': {
@@ -39,7 +39,7 @@ if __name__ == '__main__':
         },
         'training': {
             'device': torch.device('gpu') if torch.cuda.is_available() else torch.device('cpu'),
-            'learning_rate': 1e-3,
+            'learning_rate': 1e-4,
             'n_epochs': 30,
             'loss_fn': nn.CrossEntropyLoss(),
             'optimizer': torch.optim.Adam,
@@ -57,12 +57,40 @@ if __name__ == '__main__':
         name = NAME,
         config = config)
 
+
+    weights = models.MobileNet_V3_Small_Weights.IMAGENET1K_V1
+    model = models.mobilenet_v3_small(weights = weights).to(config['training']['device'])
+    model.requires_grad_(not config['training']['feature_extract'])
+    num_ftrs = model.classifier[-1].in_features
+    model.classifier[-1] = nn.Linear(num_ftrs, config['training']['num_classes'])
+
     dataset = KaggleCIFAR10Dataset(
         config['dataset']['img_dir'], 
         config['dataset']['labels_file'], 
-        config['dataset']['transform'])
+        weights.transforms())
     
     train_dataloader, val_dataloader = dataset.get_train_val_dataloaders(
         config['dataset']['train_fraction'], 
         config['dataloader'])
+
+    optimizer = config['training']['optimizer'](
+        model.parameters(), 
+        lr = config['training']['learning_rate'])
+
+    for epoch in range(config['training']['n_epochs']):
+        print(f"Epoch {epoch+1}\n---------------")
+        model.train()
+        training_loop(
+            train_dataloader, 
+            model,
+            config['training']['loss_fn'], 
+            optimizer, 
+            config['training']['device'])
+        model.eval()
+        val_loop(
+            val_dataloader, 
+            model, 
+            config['training']['loss_fn'], 
+            config['training']['device'])
+    
 

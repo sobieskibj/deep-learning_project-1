@@ -66,12 +66,14 @@ if __name__ == '__main__':
 
     for epoch in range(config['training']['n_epochs']):
         print(f"Epoch {epoch+1}\n---------------")
+        model.train()
         training_loop(
             train_dataloader, 
             model, 
             config['training']['loss_fn'], 
             optimizer, 
             config['training']['device'])
+        model.eval()
         val_loop(
             val_dataloader, 
             model, 

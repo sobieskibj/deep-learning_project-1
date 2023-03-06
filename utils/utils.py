@@ -35,10 +35,15 @@ def val_loop(dataloader, model, loss_fn, device):
             logits = model(batch_imgs)
             val_loss += loss_fn(logits, batch_labels).item()
             score += (logits.argmax(1) == batch_labels).type(torch.float).sum().item()
-        
+
     val_loss /= n_batches
     score /= size
     accuracy = 100 * score
     wandb.log({'val_loss': val_loss, 'val_accuracy': accuracy})
     print(f'Validation error: \n Accuracy: {(accuracy):>0.1f}, Avg loss: {val_loss:>8f}\n')
     return accuracy
+
+def set_parameter_requires_grad(model, feature_extracting):
+    if feature_extracting:
+        for param in model.parameters():
+            param.requires_grad = False
