@@ -1,21 +1,28 @@
-import wandb
+from __future__ import print_function
+from __future__ import division
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
-import torchvision.transforms as transforms
+import torch.optim as optim
+import numpy as np
+import torchvision
+from torchvision import datasets, models, transforms
+import matplotlib.pyplot as plt
+import time
+import os
+import copy
+import wandb
 
 import sys
 sys.path.append("./")
 from pytorch_dataset.kaggle_cifar_10_dataset import KaggleCIFAR10Dataset
-from models.example_convnet import ExampleConvnet
 from utils.utils import set_seeds, training_loop, val_loop
 
 if __name__ == '__main__':
-
+    
     PROJECT = 'deep_learning_msc_project_1'
     ENTITY = 'sobieskibj'
-    GROUP = 'test'
-    NAME = 'example_convnet'
+    GROUP = 'exp_4_test'
+    NAME = 'resnet_ft'
 
     config = {
         'dataset': {
@@ -35,12 +42,12 @@ if __name__ == '__main__':
             'learning_rate': 1e-3,
             'n_epochs': 30,
             'loss_fn': nn.CrossEntropyLoss(),
-            'optimizer': torch.optim.Adam
-        }
+            'optimizer': torch.optim.Adam,
+            'num_classes': 10,
+            'feature_extract': True
+        },
     }
-    # TODO: add parameters for model definition, e.g. numbers of filters
-    # TODO: maybe move transforms to model as nn.Sequentia
-    # transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)) # image is scaled to [-1, 1] from [0, 1]
+
     set_seeds(config['dataset']['seed'])
 
     wandb.init(
@@ -59,23 +66,3 @@ if __name__ == '__main__':
         config['dataset']['train_fraction'], 
         config['dataloader'])
 
-    model = ExampleConvnet().to(config['training']['device'])
-    optimizer = config['training']['optimizer'](
-        model.parameters(), 
-        lr = config['training']['learning_rate'])
-
-    for epoch in range(config['training']['n_epochs']):
-        print(f"Epoch {epoch+1}\n---------------")
-        training_loop(
-            train_dataloader, 
-            model, 
-            config['training']['loss_fn'], 
-            optimizer, 
-            config['training']['device'])
-        val_loop(
-            val_dataloader, 
-            model, 
-            config['training']['loss_fn'], 
-            config['training']['device'])
-        
-    wandb.finish()
