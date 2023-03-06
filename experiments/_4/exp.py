@@ -29,7 +29,7 @@ if __name__ == '__main__':
             'seed': 0,
             'img_dir': 'cifar-10/train',
             'labels_file': 'cifar-10/trainLabels.csv',
-            'transform': transforms.Compose([]),
+            'transform': transforms.Compose([transforms.ToTensor()]),
             'train_fraction': 0.8
         },
         'dataloader': {

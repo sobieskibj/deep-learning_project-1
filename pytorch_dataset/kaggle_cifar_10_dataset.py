@@ -10,12 +10,11 @@ import matplotlib.pyplot as plt
 
 class KaggleCIFAR10Dataset(Dataset):
 
-    def __init__(self, img_dir, labels_file, transform = None, target_transform = None, convert_dtype = True) -> None:
+    def __init__(self, img_dir, labels_file, transform = None, target_transform = None) -> None:
         super().__init__()
         self.img_dir = img_dir
         self.img_names = [e for e in os.listdir(img_dir) if e.endswith('.png')]
         self.img_labels = pd.read_csv(labels_file, index_col = 0)
-        self.convert_dtype = convert_dtype
         self.transform = transform
         self.labels_mapping = self.get_labels_mapping()
         self.target_transform = self.labels_mapping if target_transform is None else target_transform
@@ -28,7 +27,6 @@ class KaggleCIFAR10Dataset(Dataset):
         pandas_index = int(img_name.split('.')[0])
         img_path = os.path.join(self.img_dir, img_name)
         image = read_image(img_path)
-        # image = convert_image_dtype(image, dtype = torch.float32) # image is scaled to [0, 1]
         label = self.img_labels.loc[pandas_index].values[0]
         if self.transform:
             image = self.transform(image)
