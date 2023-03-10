@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 class KaggleCIFAR10Dataset(Dataset):
 
-    def __init__(self, img_dir, labels_file, transform = None, target_transform = None) -> None:
+    def __init__(self, img_dir, labels_file, transform = None, target_transform = None, convert_to_float = True) -> None:
         super().__init__()
         self.img_dir = img_dir
         self.img_names = [e for e in os.listdir(img_dir) if e.endswith('.png')]
@@ -18,6 +18,7 @@ class KaggleCIFAR10Dataset(Dataset):
         self.transform = transform
         self.labels_mapping = self.get_labels_mapping()
         self.target_transform = self.labels_mapping if target_transform is None else target_transform
+        self.convert_to_float = convert_to_float
 
     def __len__(self):
         return len(self.img_labels)
@@ -27,6 +28,7 @@ class KaggleCIFAR10Dataset(Dataset):
         pandas_index = int(img_name.split('.')[0])
         img_path = os.path.join(self.img_dir, img_name)
         image = read_image(img_path)
+        if self.convert_to_float: image = convert_image_dtype(image)
         label = self.img_labels.loc[pandas_index].values[0]
         if self.transform:
             image = self.transform(image)

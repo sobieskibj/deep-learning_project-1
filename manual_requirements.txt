@@ -3,3 +3,4 @@ torchvision
 torchaudio
 matplotlib
 pandas
+einops
