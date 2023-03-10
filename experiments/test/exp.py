@@ -8,7 +8,7 @@ import sys
 sys.path.append("./")
 from pytorch_dataset.kaggle_cifar_10_dataset import KaggleCIFAR10Dataset
 from models.example_convnet import ExampleConvnet
-from utils.utils import set_seeds, training_loop, val_loop
+from utils.utils import set_seeds, training_loop, val_loop, get_num_of_params
 
 if __name__ == '__main__':
 
@@ -63,6 +63,8 @@ if __name__ == '__main__':
     optimizer = config['training']['optimizer'](
         model.parameters(), 
         lr = config['training']['learning_rate'])
+
+    print('Number of trainable parameters: ', get_num_of_params(model))
 
     for epoch in range(config['training']['n_epochs']):
         print(f"Epoch {epoch+1}\n---------------")

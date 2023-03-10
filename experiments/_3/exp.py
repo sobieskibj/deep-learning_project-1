@@ -70,7 +70,7 @@ if __name__ == '__main__':
         lr = config['training']['learning_rate'])
 
     print('Number of trainable parameters: ', get_num_of_params(model))
-
+    
     for epoch in range(config['training']['n_epochs']):
         print(f"Epoch {epoch+1}\n---------------")
         model.train()
