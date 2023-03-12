@@ -1,7 +1,11 @@
 import torch
-import random
-import numpy as np
+import torchvision.transforms as transforms
+import torch.nn as nn
+import copy
 import wandb
+import random
+import itertools
+import numpy as np
 
 def set_seeds(seed):
     torch.manual_seed(seed)
@@ -50,3 +54,52 @@ def set_parameter_requires_grad(model, feature_extracting):
 
 def get_num_of_params(model):
     return np.sum([param.numel() for param in model.parameters()])
+
+def make_configs(base_config, combinations):
+    product_input = [p['values'] for p in combinations.values()]
+    product = [p for p in itertools.product(*product_input)]
+    configs = []
+    for p in product: # for each combination
+        config = copy.deepcopy(base_config)
+        for i, parameter in enumerate(combinations.values()): # for each parameter in config
+            for name in parameter['dict_path'][:-1]: # finish when pointing at second-last element from path
+                pointer = config[name]
+            pointer[parameter['dict_path'][-1]] = p[i] # set desired value
+        configs.append(config)
+    return configs
+        
+if __name__ == '__main__':
+    combinations = {
+        'transforms': {
+            'dict_path': ['dataset', 'transform'],
+            'values': [transforms.Compose([]), transforms.Compose([transforms.ToTensor()])]
+        },
+        'seeds': {
+            'dict_path': ['dataset', 'seed'],
+            'values': [0, 1, 2]
+        }
+    }
+
+    base_config = {
+        'dataset': {
+            'seed': 0,
+            'img_dir': 'cifar-10/train',
+            'labels_file': 'cifar-10/trainLabels.csv',
+            'transform': transforms.Compose([]),
+            'train_fraction': 0.8
+        },
+        'dataloader': {
+            'batch_size': 128,
+            'shuffle': True,
+            'num_workers': 8
+        },
+        'training': {
+            'device': torch.device('gpu') if torch.cuda.is_available() else torch.device('cpu'),
+            'learning_rate': 1e-3,
+            'n_epochs': 30,
+            'loss_fn': nn.CrossEntropyLoss(),
+            'optimizer': torch.optim.Adam
+        }
+    }
+    
+    print(make_configs(base_config, combinations))
