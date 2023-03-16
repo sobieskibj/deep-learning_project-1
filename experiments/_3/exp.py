@@ -16,7 +16,7 @@ if __name__ == '__main__':
     ENTITY = 'bj_team'
     GROUP = 'exp_3'
     NAME = 'vit'
-    SAVE_PATH = '../weights/exp_3' # absolute path
+    SAVE_PATH = 'weights/exp_3'
 
     combinations = {
         'transforms': {

@@ -17,7 +17,7 @@ if __name__ == '__main__':
     ENTITY = 'bj_team'
     GROUP = 'exp_4'
     NAME = 'finetuned_model'
-    SAVE_PATH = '../weights/exp_4' # provide absolute path
+    SAVE_PATH = 'weights/exp_4'
 
     combinations = {
         'models': {
