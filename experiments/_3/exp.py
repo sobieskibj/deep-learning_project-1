@@ -16,7 +16,7 @@ if __name__ == '__main__':
     ENTITY = 'bj_team'
     GROUP = 'exp_3'
     NAME = 'vit'
-    SAVE_PATH = '/Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/weights/exp_3'
+    SAVE_PATH = '../weights/exp_3' # absolute path
 
     combinations = {
         'transforms': {

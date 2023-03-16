@@ -17,7 +17,7 @@ if __name__ == '__main__':
     ENTITY = 'bj_team'
     GROUP = 'exp_4'
     NAME = 'finetuned_model'
-    SAVE_PATH = '/Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/weights/exp_4' # provide absolute path
+    SAVE_PATH = '../weights/exp_4' # provide absolute path
 
     combinations = {
         'models': {
@@ -46,7 +46,7 @@ if __name__ == '__main__':
         'training': {
             'device': torch.device('gpu') if torch.cuda.is_available() else torch.device('cpu'),
             'learning_rate': 1e-4,
-            'n_epochs': 1,
+            'n_epochs': 100,
             'loss_fn': nn.CrossEntropyLoss(),
             'optimizer': torch.optim.Adam,
             'num_classes': 10,
