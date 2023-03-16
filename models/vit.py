@@ -7,11 +7,11 @@ from einops.layers.torch import Rearrange
 class ViT(nn.Module):
 
     def __init__(self,
-                 image_size,
-                 patch_size,
-                 num_classes,
-                 dim,
-                 encoder_depth,
+                 image_size = (32, 32),
+                 patch_size = (4, 4),
+                 num_classes = 10,
+                 dim = 30,
+                 encoder_depth = 6,
                  channels = 3,
                  embedding_dropout = 0.,
                  **kwargs):
