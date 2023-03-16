@@ -88,7 +88,7 @@ def run(model, config, train_dataloader, val_dataloader, optimizer, save_path):
         val_accuracy_history.append(val_accuracy)
         val_accuracy_history = val_accuracy_history[-config['other']['val_history_len']:]
         max_val_accuracy = max(val_accuracy_history)
-        print('Validation accuracy history: ', [v.round(3) for v in val_accuracy_history])
+        print('Validation accuracy history: ', [round(v, 3) for v in val_accuracy_history])
         if epoch > config['other']['min_n_epochs'] and \
             val_accuracy_history.index(max_val_accuracy) == 0: # not improving anymore
                 print('Not improving anymore')
