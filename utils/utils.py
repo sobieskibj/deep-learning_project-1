@@ -68,38 +68,31 @@ def make_configs(base_config, combinations):
         configs.append(config)
     return configs
         
-if __name__ == '__main__':
-    combinations = {
-        'transforms': {
-            'dict_path': ['dataset', 'transform'],
-            'values': [transforms.Compose([]), transforms.Compose([transforms.ToTensor()])]
-        },
-        'seeds': {
-            'dict_path': ['dataset', 'seed'],
-            'values': [0, 1, 2]
-        }
-    }
-
-    base_config = {
-        'dataset': {
-            'seed': 0,
-            'img_dir': 'cifar-10/train',
-            'labels_file': 'cifar-10/trainLabels.csv',
-            'transform': transforms.Compose([]),
-            'train_fraction': 0.8
-        },
-        'dataloader': {
-            'batch_size': 128,
-            'shuffle': True,
-            'num_workers': 8
-        },
-        'training': {
-            'device': torch.device('gpu') if torch.cuda.is_available() else torch.device('cpu'),
-            'learning_rate': 1e-3,
-            'n_epochs': 30,
-            'loss_fn': nn.CrossEntropyLoss(),
-            'optimizer': torch.optim.Adam
-        }
-    }
-    
-    print(make_configs(base_config, combinations))
+def run(model, config, train_dataloader, val_dataloader, optimizer, save_path):
+    val_accuracy_history = []
+    for epoch in range(config['training']['n_epochs']):
+        print(f"Epoch {epoch+1}\n---------------")
+        model.train()
+        training_loop(
+            train_dataloader, 
+            model, 
+            config['training']['loss_fn'], 
+            optimizer, 
+            config['training']['device'])
+        model.eval()
+        val_accuracy = val_loop(
+            val_dataloader, 
+            model, 
+            config['training']['loss_fn'], 
+            config['training']['device'])
+        val_accuracy_history.append(val_accuracy)
+        val_accuracy_history = val_accuracy_history[-config['other']['val_history_len']:]
+        max_val_accuracy = max(val_accuracy_history)
+        print('Validation accuracy history: ', [v.round(3) for v in val_accuracy_history])
+        if epoch > config['other']['min_n_epochs'] and \
+            val_accuracy_history.index(max_val_accuracy) == 0: # not improving anymore
+                print('Not improving anymore')
+                break
+        elif val_accuracy_history[-1] == max_val_accuracy:
+            print(f'Saving the weights at epoch {epoch + 1}\n')
+            torch.save(model.state_dict(), save_path) # last result was the best

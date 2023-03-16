@@ -13,7 +13,7 @@ from utils.utils import set_seeds, training_loop, val_loop, get_num_of_params
 if __name__ == '__main__':
 
     PROJECT = 'deep_learning_msc_project_1'
-    ENTITY = 'sobieskibj'
+    ENTITY = 'bj_team'
     GROUP = 'test'
     NAME = 'example_convnet'
 

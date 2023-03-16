@@ -1,21 +1,22 @@
+import os
 import wandb
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 
 import sys
 sys.path.append("./")
 from pytorch_dataset.kaggle_cifar_10_dataset import KaggleCIFAR10Dataset
 from models.vit import ViT
-from utils.utils import set_seeds, training_loop, val_loop, get_num_of_params, make_configs
+from utils.utils import set_seeds, get_num_of_params, make_configs, run
 
 if __name__ == '__main__':
 
     PROJECT = 'deep_learning_msc_project_1'
     ENTITY = 'bj_team'
-    GROUP = 'exp_4'
+    GROUP = 'exp_3'
     NAME = 'vit'
+    SAVE_PATH = '/Users/bartlomiejsobieski/Osobisty/VSC/deep_learning_project_1/weights/exp_3'
 
     combinations = {
         'transforms': {
@@ -116,29 +117,19 @@ if __name__ == '__main__':
             weight_decay = config['training']['weight_decay']
             )
 
-        print('Number of trainable parameters: ', get_num_of_params(model))
         print('Running config:', config)
+        print('Number of parameters: ', get_num_of_params(model))
 
-        val_accuracy_history = []
-        for epoch in range(config['training']['n_epochs']):
-            print(f"Epoch {epoch+1}\n---------------")
-            model.train()
-            training_loop(
-                train_dataloader, 
-                model, 
-                config['training']['loss_fn'], 
-                optimizer, 
-                config['training']['device'])
-            model.eval()
-            val_accuracy = val_loop(
-                val_dataloader, 
-                model, 
-                config['training']['loss_fn'], 
-                config['training']['device'])
-            val_accuracy_history.append(val_accuracy)
-            val_accuracy_history = val_accuracy_history[-config['other']['val_history_len']:]
-            if epoch > config['other']['min_n_epochs'] and \
-                val_accuracy_history.index(max(val_accuracy_history)) == 0:
-                    break
+        n_augs = len(str(config['dataset']['transform']).split('\n'))
+        seed_v = config['dataset']['seed']
+        lr_v = config['training']['learning_rate']
+        batch_size_v = config['dataloader']['batch_size']
+        l2_v = config['training']['weight_decay']
+        dropout_v = config['model']['embedding_dropout']
+
+        model_id = f'vit_seed:{seed_v}_n_augs:{n_augs}_lr:{lr_v}_bs:{batch_size_v}_l2:{l2_v}_dropout:{dropout_v}.pt'
+        save_path = os.path.join(SAVE_PATH, model_id)
+
+        run(model, config, train_dataloader, val_dataloader, optimizer, save_path)
 
         wandb.finish()
