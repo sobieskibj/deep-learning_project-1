@@ -7,7 +7,7 @@ Checks:
 
 To create proper conda environment, use
 
-`conda create --name myenv --file conda_requirements.txt`
+`conda create --name myenv --file conda_requirements.yml`
 
 in root directory of this repository.
 
