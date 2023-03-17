@@ -15,7 +15,7 @@ def set_seeds(seed):
 def training_loop(dataloader, model, loss_fn, optimizer, device):
     size = len(dataloader.dataset)
     for batch_id, (batch_imgs, batch_labels) in enumerate(dataloader):
-        batch_imgs.to(device), batch_labels.to(device)
+        batch_imgs, batch_labels = batch_imgs.to(device), batch_labels.to(device)
         logits = model(batch_imgs)
         loss = loss_fn(logits, batch_labels)
 
@@ -35,7 +35,7 @@ def val_loop(dataloader, model, loss_fn, device):
 
     with torch.no_grad():
         for batch_imgs, batch_labels in dataloader:
-            batch_imgs.to(device), batch_labels.to(device)
+            batch_imgs, batch_labels = batch_imgs.to(device), batch_labels.to(device)
             logits = model(batch_imgs)
             val_loss += loss_fn(logits, batch_labels).item()
             score += (logits.argmax(1) == batch_labels).type(torch.float).sum().item()
