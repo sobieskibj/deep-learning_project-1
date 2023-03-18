@@ -22,7 +22,7 @@ if __name__ == '__main__':
     combinations = {
         'models': {
             'dict_path': ['model', 'name'],
-            'values': ['efficient_net_v2_s', 'resnet18', 'mobile_net_v3_s']
+            'values': ['resnet18', 'mobile_net_v3_s'] # 'efficient_net_v2_s'
         },
         'seeds': {
             'dict_path': ['dataset', 'seed'],
@@ -93,7 +93,7 @@ if __name__ == '__main__':
             model = models.resnet18(weights = weights).to(config['training']['device'])
             model.requires_grad_(not config['training']['feature_extract'])
             num_ftrs = model.fc.in_features
-            model.classifier[-1] = nn.Linear(num_ftrs, config['training']['num_classes'])
+            model.fc = nn.Linear(num_ftrs, config['training']['num_classes'])
 
         print('Running config:', config)
         print('Number of parameters: ', get_num_of_params(model))
