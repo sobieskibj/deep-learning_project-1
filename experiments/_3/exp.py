@@ -22,27 +22,27 @@ if __name__ == '__main__':
         'transforms': {
             'dict_path': ['dataset', 'transform'],
             'values': [
-                transforms.Compose([ # basic augmentation
-                    transforms.RandomHorizontalFlip(),
-                    transforms.ColorJitter(),
-                    transforms.RandomRotation(10)
-                ]),
-                transforms.Compose([]), # no augmentation
+                # transforms.Compose([ # basic augmentation
+                #     transforms.RandomHorizontalFlip(),
+                #     transforms.ColorJitter(),
+                #     transforms.RandomRotation(10)
+                # ]),
                 transforms.Compose([ # basic + random erasing augmentation
                     transforms.RandomHorizontalFlip(),
                     transforms.ColorJitter(),
                     transforms.RandomRotation(10),
                     transforms.RandomErasing()
-                ])
+                ]),
+                transforms.Compose([]), # no augmentation
                 ]
         },
         'seeds': {
             'dict_path': ['dataset', 'seed'],
-            'values': [0, 1, 2]
+            'values': [0, 1]
         }, ## training process related ##
         'lrs': { 
             'dict_path': ['training', 'learning_rate'],
-            'values': [1e-2, 1e-3, 1e-4]
+            'values': [1e-2, 1e-3]
         },
         'batch_sizes': {
             'dict_path': ['dataloader', 'batch_size'],
@@ -50,7 +50,7 @@ if __name__ == '__main__':
         }, ## regularization related ##
         'l2_penalties': {
             'dict_path': ['training', 'weight_decay'],
-            'values': [0, 0.01, 0.1]
+            'values': [0, 0.01]
         },
         'dropout': {
             'dict_path': ['model', 'embedding_dropout'],
