@@ -7,7 +7,7 @@ import torchvision.transforms as transforms
 import sys
 sys.path.append("./")
 from pytorch_dataset.kaggle_cifar_10_dataset import KaggleCIFAR10Dataset
-from models.vit import ViT
+from models.linear import LinearNet
 from utils.utils import set_seeds, get_num_of_params, make_configs, run
 
 if __name__ == '__main__':
@@ -16,14 +16,14 @@ if __name__ == '__main__':
     ENTITY = 'bj_team'
     GROUP = 'exp_1'
     NAME = 'linear'
-    SAVE_PATH = 'weights/exp_1'
+    SAVE_PATH = 'weights\\exp_1'
 
 
     base_config = {
         'dataset': {
             'seed': 0,
-            'img_dir': 'cifar-10/train',
-            'labels_file': 'cifar-10/trainLabels.csv',
+            'img_dir': 'cifar-10\\train',
+            'labels_file': 'cifar-10\\trainLabels.csv',
             'transform': transforms.Compose([]),
             'train_fraction': 0.8
         },
@@ -41,7 +41,8 @@ if __name__ == '__main__':
             'weight_decay': 0.
         },
         'model': {
-            'embedding_dropout': 0.5,
+            'dropout_in': 0,
+            'dropout_out': 0,
             'architecture': '1'
         },
         'other': {
@@ -54,16 +55,21 @@ if __name__ == '__main__':
             'transforms': {
                 'dict_path': ['dataset', 'transform'],
                 'values': [
-                    # transforms.Compose([ # basic augmentation
-                    #     transforms.RandomHorizontalFlip(),
-                    #     transforms.ColorJitter(),
-                    #     transforms.RandomRotation(10)
-                    # ]),
-                    transforms.Compose([ # basic + random erasing augmentation
+                    transforms.Compose([ # basic + advanced augmentation
+                        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2),
+                        transforms.RandomAffine(degrees=30, translate=(0.1, 0.1), scale=(0.8, 1.2), shear=10),
+                        transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 2.0)),
+                        transforms.RandomErasing(p=0.5, scale=(0.02, 0.33), ratio=(0.3, 3.3)),
                         transforms.RandomHorizontalFlip(),
-                        transforms.ColorJitter(),
                         transforms.RandomRotation(10),
-                        transforms.RandomErasing()
+                        transforms.RandomCrop(29),
+                        transforms.Resize((32, 32)),
+                    ]),
+                    transforms.Compose([ # basic augmentation
+                        transforms.RandomHorizontalFlip(),
+                        transforms.RandomRotation(10),
+                        transforms.RandomCrop(29),
+                        transforms.Resize((32, 32)),
                     ]),
                     transforms.Compose([]), # no augmentation
                     ]
@@ -78,15 +84,23 @@ if __name__ == '__main__':
             },
             'batch_sizes': {
                 'dict_path': ['dataloader', 'batch_size'],
-                'values': [64, 128]
+                'values': [64, 128, 256]
             }, ## regularization related ##
             'l2_penalties': {
                 'dict_path': ['training', 'weight_decay'],
                 'values': [0, 0.01]
             },
-            'dropout': {
-                'dict_path': ['model', 'embedding_dropout'],
-                'values': [0, 0.5]
+            'dropout_in': {
+                'dict_path': ['model', 'dropout_in'],
+                'values': [0, 0.1, 0.2, 0.3]
+            },
+            'dropout_out': {
+                'dict_path': ['model', 'dropout_out'],
+                'values': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+            },
+            'architecture':{
+                'dict_path': ['model', 'architecture'],
+                'values': ['1', '2', '3']
             }
         }
 
@@ -114,7 +128,8 @@ if __name__ == '__main__':
             config['dataset']['train_fraction'], 
             config['dataloader'])
 
-        model = ViT(**config['model']).to(config['training']['device'])
+        model = LinearNet(**config['model']).to(config['training']['device'])
+
         optimizer = config['training']['optimizer'](
             model.parameters(), 
             lr = config['training']['learning_rate'],
@@ -129,9 +144,10 @@ if __name__ == '__main__':
         lr_v = config['training']['learning_rate']
         batch_size_v = config['dataloader']['batch_size']
         l2_v = config['training']['weight_decay']
-        dropout_v = config['model']['embedding_dropout']
+        dropout_in = config['model']['dropout_in']
+        dropout_out = config['model']['dropout_out']
 
-        model_id = f'vit_seed:{seed_v}_n_augs:{n_augs}_lr:{lr_v}_bs:{batch_size_v}_l2:{l2_v}_dropout:{dropout_v}.pt'
+        model_id = f'seed:{seed_v}_n_augs:{n_augs}_lr:{lr_v}_bs:{batch_size_v}_l2:{l2_v}_dropout_in:{dropout_in}_dropout_out:{dropout_out}.pt'
         save_path = os.path.join(SAVE_PATH, model_id)
 
         run(model, config, train_dataloader, val_dataloader, optimizer, save_path)
