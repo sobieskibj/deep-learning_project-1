@@ -33,7 +33,7 @@ if __name__ == '__main__':
             'num_workers': 8
         },
         'training': {
-            'device': torch.device('gpu') if torch.cuda.is_available() else torch.device('cpu'),
+            'device': torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'),
             'learning_rate': 1e-3,
             'n_epochs': 100,
             'loss_fn': nn.CrossEntropyLoss(),
