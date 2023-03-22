@@ -83,7 +83,7 @@ if __name__ == '__main__':
             'weight_decay': 0.
         },
         'model': {
-            'embedding_dropout': 0.5,
+            'embedding_dropout': 0.1,
             'architecture': '1',
         },
         'other': {
