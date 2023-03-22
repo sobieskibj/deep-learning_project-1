@@ -42,7 +42,7 @@ if __name__ == '__main__':
         }, ## training process related ##
         'lrs': { 
             'dict_path': ['training', 'learning_rate'],
-            'values': [1e-3, 1e-4]
+            'values': [1e-2, 1e-3, 1e-4]
         },
         'batch_sizes': {
             'dict_path': ['dataloader', 'batch_size'],
