@@ -54,7 +54,7 @@ if __name__ == '__main__':
         },
         'dropout': {
             'dict_path': ['model', 'embedding_dropout'],
-            'values': [0, 0.1, 0.2, 0.5]
+            'values': [0, 0.1, 0.5]
         },
         'architecture':{
             'dict_path': ['model', 'architecture'],
@@ -73,7 +73,6 @@ if __name__ == '__main__':
         'dataloader': {
             'batch_size': 128,
             'shuffle': True,
-            'num_workers': 8
         },
         'training': {
             'device': torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'),
@@ -95,7 +94,7 @@ if __name__ == '__main__':
 
     configs = make_configs(base_config, combinations)
 
-    for config in configs:
+    for i, config in enumerate(configs):
 
         set_seeds(config['dataset']['seed'])
 
@@ -105,6 +104,9 @@ if __name__ == '__main__':
             group = GROUP,
             name = NAME,
             config = config)
+        
+        l = len(config)
+        print(f"Config {i+1}/{l}")
 
         dataset = KaggleCIFAR10Dataset(
             config['dataset']['img_dir'], 

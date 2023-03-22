@@ -30,7 +30,6 @@ if __name__ == '__main__':
         'dataloader': {
             'batch_size': 128,
             'shuffle': True,
-            'num_workers': 8
         },
         'training': {
             'device': torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'),
@@ -38,11 +37,11 @@ if __name__ == '__main__':
             'n_epochs': 100,
             'loss_fn': nn.CrossEntropyLoss(),
             'optimizer': torch.optim.Adam,
-            'weight_decay': 0.
+            'weight_decay': 0.1
         },
         'model': {
             'dropout_in': 0,
-            'dropout_out': 0,
+            'dropout_out': 0.1,
             'architecture': '1'
         },
         'other': {
@@ -55,43 +54,32 @@ if __name__ == '__main__':
         'transforms': {
             'dict_path': ['dataset', 'transform'],
             'values': [
-                transforms.Compose([ # basic augmentation
-                    transforms.RandomHorizontalFlip(),
-                    transforms.ColorJitter(),
-                    transforms.RandomRotation(10)
-                ]),
-                transforms.Compose([ # basic + random erasing augmentation
-                    transforms.RandomHorizontalFlip(),
-                    transforms.ColorJitter(),
-                    transforms.RandomRotation(10),
-                    transforms.RandomErasing()
-                ]),
                 transforms.Compose([]), # no augmentation
                 ]
         },
         'seeds': {
             'dict_path': ['dataset', 'seed'],
-            'values': [0]
+            'values': [0, 1, 2]
         }, ## training process related ##
         'lrs': { 
             'dict_path': ['training', 'learning_rate'],
-            'values': [1e-2, 1e-3, 1e-4]
+            'values': [1e-3]
         },
         'batch_sizes': {
             'dict_path': ['dataloader', 'batch_size'],
-            'values': [64, 128, 256]
+            'values': [128]
         }, ## regularization related ##
         'l2_penalties': {
             'dict_path': ['training', 'weight_decay'],
-            'values': [0, 0.01]
+            'values': [0.01]
         },
         'dropout_in': {
             'dict_path': ['model', 'dropout_in'],
-            'values': [0, 0.1, 0.2, 0.3]
+            'values': [0]
         },
         'dropout_out': {
             'dict_path': ['model', 'dropout_out'],
-            'values': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+            'values': [0.1]
         },
         'architecture':{
             'dict_path': ['model', 'architecture'],
@@ -102,8 +90,7 @@ if __name__ == '__main__':
 
     configs = make_configs(base_config, combinations)
 
-
-    for config in configs:
+    for i, config in enumerate(configs):
 
         set_seeds(config['dataset']['seed'])
 
@@ -113,6 +100,9 @@ if __name__ == '__main__':
             group = GROUP,
             name = NAME,
             config = config)
+        
+        l = len(config)
+        print(f"Config {i+1}/{l}")
 
         dataset = KaggleCIFAR10Dataset(
             config['dataset']['img_dir'], 
