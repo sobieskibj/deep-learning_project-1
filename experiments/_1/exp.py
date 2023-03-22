@@ -52,57 +52,52 @@ if __name__ == '__main__':
     }
 
     combinations = {
-            'transforms': {
-                'dict_path': ['dataset', 'transform'],
-                'values': [
-                    transforms.Compose([ # basic + advanced augmentation
-                        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2),
-                        transforms.RandomAffine(degrees=30, translate=(0.1, 0.1), scale=(0.8, 1.2), shear=10),
-                        transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 2.0)),
-                        transforms.RandomErasing(p=0.5, scale=(0.02, 0.33), ratio=(0.3, 3.3)),
-                        transforms.RandomHorizontalFlip(),
-                        transforms.RandomRotation(10),
-                        transforms.RandomCrop(29),
-                        transforms.Resize((32, 32)),
-                    ]),
-                    transforms.Compose([ # basic augmentation
-                        transforms.RandomHorizontalFlip(),
-                        transforms.RandomRotation(10),
-                        transforms.RandomCrop(29),
-                        transforms.Resize((32, 32)),
-                    ]),
-                    transforms.Compose([]), # no augmentation
-                    ]
-            },
-            'seeds': {
-                'dict_path': ['dataset', 'seed'],
-                'values': [0, 1]
-            }, ## training process related ##
-            'lrs': { 
-                'dict_path': ['training', 'learning_rate'],
-                'values': [1e-2, 1e-3]
-            },
-            'batch_sizes': {
-                'dict_path': ['dataloader', 'batch_size'],
-                'values': [64, 128, 256]
-            }, ## regularization related ##
-            'l2_penalties': {
-                'dict_path': ['training', 'weight_decay'],
-                'values': [0, 0.01]
-            },
-            'dropout_in': {
-                'dict_path': ['model', 'dropout_in'],
-                'values': [0, 0.1, 0.2, 0.3]
-            },
-            'dropout_out': {
-                'dict_path': ['model', 'dropout_out'],
-                'values': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
-            },
-            'architecture':{
-                'dict_path': ['model', 'architecture'],
-                'values': ['1', '2', '3']
-            }
+        'transforms': {
+            'dict_path': ['dataset', 'transform'],
+            'values': [
+                # transforms.Compose([ # basic augmentation
+                #     transforms.RandomHorizontalFlip(),
+                #     transforms.ColorJitter(),
+                #     transforms.RandomRotation(10)
+                # ]),
+                transforms.Compose([ # basic + random erasing augmentation
+                    transforms.RandomHorizontalFlip(),
+                    transforms.ColorJitter(),
+                    transforms.RandomRotation(10),
+                    transforms.RandomErasing()
+                ]),
+                transforms.Compose([]), # no augmentation
+                ]
+        },
+        'seeds': {
+            'dict_path': ['dataset', 'seed'],
+            'values': [0, 1]
+        }, ## training process related ##
+        'lrs': { 
+            'dict_path': ['training', 'learning_rate'],
+            'values': [1e-2, 1e-3]
+        },
+        'batch_sizes': {
+            'dict_path': ['dataloader', 'batch_size'],
+            'values': [64, 128, 256]
+        }, ## regularization related ##
+        'l2_penalties': {
+            'dict_path': ['training', 'weight_decay'],
+            'values': [0, 0.01]
+        },
+        'dropout_in': {
+            'dict_path': ['model', 'dropout_in'],
+            'values': [0, 0.1, 0.2, 0.3]
+        },
+        'dropout_out': {
+            'dict_path': ['model', 'dropout_out'],
+            'values': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+        },
+        'architecture':{
+            'dict_path': ['model', 'architecture'],
+            'values': ['1', '2', '3']
         }
+    }
 
 
     configs = make_configs(base_config, combinations)
@@ -146,8 +141,9 @@ if __name__ == '__main__':
         l2_v = config['training']['weight_decay']
         dropout_in = config['model']['dropout_in']
         dropout_out = config['model']['dropout_out']
+        arch = config['model']['architecture']
 
-        model_id = f'seed:{seed_v}_n_augs:{n_augs}_lr:{lr_v}_bs:{batch_size_v}_l2:{l2_v}_dropout_in:{dropout_in}_dropout_out:{dropout_out}.pt'
+        model_id = f'architecture:{arch}_seed:{seed_v}_n_augs:{n_augs}_lr:{lr_v}_bs:{batch_size_v}_l2:{l2_v}_dropout_in:{dropout_in}_dropout_out:{dropout_out}.pt'
         save_path = os.path.join(SAVE_PATH, model_id)
 
         run(model, config, train_dataloader, val_dataloader, optimizer, save_path)

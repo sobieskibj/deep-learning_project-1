@@ -9,14 +9,14 @@ class LinearNet(nn.Module):
                 channels = 3,
                 dropout_in = 0.,
                 dropout_out = 0.,
-                arch_type = '1',
+                architecture = '1',
                 **kwargs):
         super(LinearNet, self).__init__()
 
         image_height, image_width = image_size
         values_in = image_height * image_width * channels
 
-        if arch_type == '1':
+        if architecture == '1':
             self.features = nn.Sequential(
                 nn.Flatten(),
                 nn.Linear(values_in, 1500),
@@ -27,9 +27,8 @@ class LinearNet(nn.Module):
                 nn.Linear(500, 100),
                 nn.Dropout(dropout_out),
                 nn.ReLU(),
-                nn.Linear(100, 10),
-                nn.Softmax(dim=1))
-        elif arch_type == '2':
+                nn.Linear(100, 10))
+        elif architecture == '2':
             self.features = nn.Sequential(
                 nn.Flatten(),
                 nn.Linear(values_in, 2048),
@@ -50,9 +49,8 @@ class LinearNet(nn.Module):
                 nn.Linear(32, 16),
                 nn.Dropout(dropout_out),
                 nn.ReLU(),
-                nn.Linear(16, 10),
-                nn.Softmax(dim=1))
-        elif arch_type == '3':
+                nn.Linear(16, 10))
+        elif architecture == '3':
             self.features = nn.Sequential(
                 nn.Flatten(),
                 nn.Linear(values_in, 2048),
@@ -89,8 +87,7 @@ class LinearNet(nn.Module):
                 nn.Linear(16, 16),
                 nn.Dropout(dropout_out),
                 nn.ReLU(),
-                nn.Linear(16, 10),
-                nn.Softmax(dim=1))
+                nn.Linear(16, 10))
             
     def forward(self, x):
         x = self.features(x)
