@@ -38,7 +38,7 @@ if __name__ == '__main__':
         },
         'seeds': {
             'dict_path': ['dataset', 'seed'],
-            'values': [0, 1]
+            'values': [2]
         }, ## training process related ##
         'lrs': { 
             'dict_path': ['training', 'learning_rate'],
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     base_config = {
         'dataset': {
-            'seed': 0,
+            'seed': 2,
             'img_dir': 'cifar-10/train',
             'labels_file': 'cifar-10/trainLabels.csv',
             'transform': transforms.Compose([]),

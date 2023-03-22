@@ -22,11 +22,11 @@ if __name__ == '__main__':
         'transforms': {
             'dict_path': ['dataset', 'transform'],
             'values': [
-                # transforms.Compose([ # basic augmentation
-                #     transforms.RandomHorizontalFlip(),
-                #     transforms.ColorJitter(),
-                #     transforms.RandomRotation(10)
-                # ]),
+                transforms.Compose([ # basic augmentation
+                    transforms.RandomHorizontalFlip(),
+                    transforms.ColorJitter(),
+                    transforms.RandomRotation(10)
+                ]),
                 transforms.Compose([ # basic + random erasing augmentation
                     transforms.RandomHorizontalFlip(),
                     transforms.ColorJitter(),
@@ -38,11 +38,11 @@ if __name__ == '__main__':
         },
         'seeds': {
             'dict_path': ['dataset', 'seed'],
-            'values': [0, 1]
+            'values': [1]
         }, ## training process related ##
         'lrs': { 
             'dict_path': ['training', 'learning_rate'],
-            'values': [1e-2, 1e-3]
+            'values': [1e-2, 1e-3, 1e-4]
         },
         'batch_sizes': {
             'dict_path': ['dataloader', 'batch_size'],
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
     base_config = {
         'dataset': {
-            'seed': 0,
+            'seed': 1,
             'img_dir': 'cifar-10/train',
             'labels_file': 'cifar-10/trainLabels.csv',
             'transform': transforms.Compose([]),
