@@ -11,19 +11,21 @@ from models.linear import LinearNet
 from utils.utils import set_seeds, get_num_of_params, make_configs, run
 
 if __name__ == '__main__':
+    ROOT = os.getcwd()
+    print(ROOT)
 
     PROJECT = 'deep_learning_msc_project_1'
     ENTITY = 'bj_team'
     GROUP = 'exp_1'
     NAME = 'linear'
-    SAVE_PATH = 'weights\\exp_1'
+    SAVE_PATH = os.path.join(ROOT, 'weights', 'exp1')
 
 
     base_config = {
         'dataset': {
             'seed': 0,
-            'img_dir': 'cifar-10\\train',
-            'labels_file': 'cifar-10\\trainLabels.csv',
+            'img_dir': os.path.join(ROOT, 'cifar-10', 'train'),
+            'labels_file': os.path.join(ROOT, 'cifar-10', 'trainLabels.csv'),
             'transform': transforms.Compose([]),
             'train_fraction': 0.8
         },
@@ -101,8 +103,8 @@ if __name__ == '__main__':
             name = NAME,
             config = config)
         
-        l = len(config)
-        print(f"--- Config {i+1}/{l} ---")
+        l = len(configs)
+        print(f"---------------\nConfig {i+1}/{l}\n---------------")
 
         dataset = KaggleCIFAR10Dataset(
             config['dataset']['img_dir'], 
@@ -133,7 +135,7 @@ if __name__ == '__main__':
         dropout_out = config['model']['dropout_out']
         arch = config['model']['architecture']
 
-        model_id = f'architecture:{arch}_seed:{seed_v}_n_augs:{n_augs}_lr:{lr_v}_bs:{batch_size_v}_l2:{l2_v}_dropout_in:{dropout_in}_dropout_out:{dropout_out}.pt'
+        model_id = f'architecture:{arch}_seed:{seed_v}_n_augs:{n_augs}_lr:{lr_v}_bs:{batch_size_v}_l2:{l2_v}_dropout_in:{dropout_in}_dropout_out:{dropout_out}'.replace('.', ',') + '.pt'
         save_path = os.path.join(SAVE_PATH, model_id)
 
         run(model, config, train_dataloader, val_dataloader, optimizer, save_path)

@@ -105,8 +105,8 @@ if __name__ == '__main__':
             name = NAME,
             config = config)
         
-        l = len(config)
-        print(f"--- Config {i+1}/{l} ---")
+        l = len(configs)
+        print(f"---------------\nConfig {i+1}/{l}\n---------------")
 
         dataset = KaggleCIFAR10Dataset(
             config['dataset']['img_dir'], 
