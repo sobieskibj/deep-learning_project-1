@@ -54,7 +54,7 @@ if __name__ == '__main__':
         },
         'dropout': {
             'dict_path': ['model', 'embedding_dropout'],
-            'values': [0, 0.5]
+            'values': [0, 0.1, 0.2, 0.5]
         },
         'architecture':{
             'dict_path': ['model', 'architecture'],
