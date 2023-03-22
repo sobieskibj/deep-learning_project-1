@@ -18,6 +18,9 @@ if __name__ == '__main__':
     NAME = 'vit'
     SAVE_PATH = 'weights/exp_3'
 
+    l = len(configs)
+    print(f"---------------\nConfig {i+1}/{l}\n---------------")
+
     combinations = {
         'transforms': {
             'dict_path': ['dataset', 'transform'],
