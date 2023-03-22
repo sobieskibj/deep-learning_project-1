@@ -18,9 +18,6 @@ if __name__ == '__main__':
     NAME = 'vit'
     SAVE_PATH = 'weights/exp_3'
 
-    l = len(configs)
-    print(f"---------------\nConfig {i+1}/{l}\n---------------")
-
     combinations = {
         'transforms': {
             'dict_path': ['dataset', 'transform'],
@@ -92,7 +89,7 @@ if __name__ == '__main__':
 
     configs = make_configs(base_config, combinations)
 
-    for config in configs:
+    for i, config in enumerate(configs):
 
         set_seeds(config['dataset']['seed'])
 
@@ -102,6 +99,9 @@ if __name__ == '__main__':
             group = GROUP,
             name = NAME,
             config = config)
+        
+        l = len(configs)
+        print(f"---------------\nConfig {i+1}/{l}\n---------------")
 
         dataset = KaggleCIFAR10Dataset(
             config['dataset']['img_dir'], 
