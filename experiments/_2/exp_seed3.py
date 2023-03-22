@@ -38,7 +38,7 @@ if __name__ == '__main__':
         },
         'seeds': {
             'dict_path': ['dataset', 'seed'],
-            'values': [3]
+            'values': [2]
         }, ## training process related ##
         'lrs': { 
             'dict_path': ['training', 'learning_rate'],
@@ -54,17 +54,17 @@ if __name__ == '__main__':
         },
         'dropout': {
             'dict_path': ['model', 'embedding_dropout'],
-            'values': [0, 0.1, 0.5]
+            'values': [0, 0.5]
         },
         'architecture':{
             'dict_path': ['model', 'architecture'],
-            'values': ['1', '2', '3']
+            'values': ['1']
         }
     }
 
     base_config = {
         'dataset': {
-            'seed': 3,
+            'seed': 2,
             'img_dir': 'cifar-10/train',
             'labels_file': 'cifar-10/trainLabels.csv',
             'transform': transforms.Compose([]),

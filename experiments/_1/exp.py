@@ -43,7 +43,7 @@ if __name__ == '__main__':
         },
         'model': {
             'dropout_in': 0,
-            'dropout_out': 0.1,
+            'dropout_out': 0.5,
             'architecture': '1'
         },
         'other': {
@@ -81,11 +81,11 @@ if __name__ == '__main__':
         },
         'dropout_out': {
             'dict_path': ['model', 'dropout_out'],
-            'values': [0.1]
+            'values': [0.5]
         },
         'architecture':{
             'dict_path': ['model', 'architecture'],
-            'values': ['1', '2', '3']
+            'values': ['1']
         }
     }
 
