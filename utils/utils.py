@@ -4,6 +4,7 @@ import torch.nn as nn
 import copy
 import wandb
 import random
+import pandas as pd
 import itertools
 import numpy as np
 
@@ -46,6 +47,23 @@ def val_loop(dataloader, model, loss_fn, device):
     wandb.log({'val_loss': val_loss, 'val_accuracy': accuracy})
     print(f'Validation error: \n Accuracy: {(accuracy):>0.1f}, Avg loss: {val_loss:>8f}\n')
     return accuracy
+
+def test_loop(dataloader, model, path_save, labels_mapping):
+    model.eval()
+    with torch.no_grad():
+        id_to_class = {}
+        for batch_imgs, batch_idxs, batch_names in dataloader:
+            batch_idxs = batch_idxs.flatten() + 1
+            logits = model(batch_imgs)
+            predicted_class_idx = logits.argmax(1)
+            predicted_class_names = [labels_mapping[idx] for idx in predicted_class_idx]
+            predictions = {idx.item(): name for idx, name in zip(batch_idxs, predicted_class_names)}
+            id_to_class.update(predictions)
+
+            if any([idx % 10000 == 0 for idx in batch_idxs]):
+                df = pd.DataFrame.from_dict(id_to_class)
+                df.to_csv(path_save, mode = 'a')
+                id_to_class = {}
 
 def set_parameter_requires_grad(model, feature_extracting):
     if feature_extracting:
