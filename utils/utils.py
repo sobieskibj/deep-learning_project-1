@@ -64,7 +64,10 @@ def test_loop(dataloader, model, path_save, labels_mapping):
             if any([idx % 10000 == 0 for idx in batch_idxs]):
                 id_to_class = [[idx, name] for idx, name in id_to_class.items()]
                 df = pd.DataFrame(id_to_class, columns=['id', 'label'])
-                df.to_csv(path_save, mode = 'a', index=False)
+                if any([idx == 1 for idx in batch_idxs]):
+                    df.to_csv(path_save, mode = 'a', index=False, header=True)
+                else:
+                    df.to_csv(path_save, mode = 'a', index=False, header=False)
                 id_to_class = {}
 
 def set_parameter_requires_grad(model, feature_extracting):
