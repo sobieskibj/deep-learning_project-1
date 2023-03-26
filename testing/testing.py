@@ -49,7 +49,7 @@ if __name__ == '__main__':
             print("Wrong number")
             raise ValueError
         
-        model.load_state_dict(torch.load(model_pth))
+        model.load_state_dict(torch.load(model_pth, map_location=device))
 
         save_pth = os.path.join(PREDICTIONS, model_pth.split("\\")[-1]).replace(".pt", ".csv")
         test_loop(dataloader=test_dataloader, model=model, path_save=save_pth, labels_mapping=labels_mapping_rev)
