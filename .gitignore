@@ -3,3 +3,5 @@
 **/__pycache__/
 .DS_Store
 weights/exp_*/*
+testing/models/*.pt
+testing/predictions/*.csv

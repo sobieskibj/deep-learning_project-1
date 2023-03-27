@@ -7,6 +7,7 @@ import random
 import pandas as pd
 import itertools
 import numpy as np
+from tqdm import tqdm
 
 def set_seeds(seed):
     torch.manual_seed(seed)
@@ -52,17 +53,21 @@ def test_loop(dataloader, model, path_save, labels_mapping):
     model.eval()
     with torch.no_grad():
         id_to_class = {}
-        for batch_imgs, batch_idxs, batch_names in dataloader:
+        for batch_imgs, batch_idxs, batch_names in tqdm(dataloader, position=1, desc="batches", leave=False, ncols=80, colour='red'):
             batch_idxs = batch_idxs.flatten() + 1
             logits = model(batch_imgs)
             predicted_class_idx = logits.argmax(1)
-            predicted_class_names = [labels_mapping[idx] for idx in predicted_class_idx]
+            predicted_class_names = [labels_mapping[idx.item()] for idx in predicted_class_idx]
             predictions = {idx.item(): name for idx, name in zip(batch_idxs, predicted_class_names)}
             id_to_class.update(predictions)
 
             if any([idx % 10000 == 0 for idx in batch_idxs]):
-                df = pd.DataFrame.from_dict(id_to_class)
-                df.to_csv(path_save, mode = 'a')
+                id_to_class = [[idx, name] for idx, name in id_to_class.items()]
+                df = pd.DataFrame(id_to_class, columns=['id', 'label'])
+                if any([idx == 1 for idx in batch_idxs]):
+                    df.to_csv(path_save, mode = 'a', index=False, header=True)
+                else:
+                    df.to_csv(path_save, mode = 'a', index=False, header=False)
                 id_to_class = {}
 
 def set_parameter_requires_grad(model, feature_extracting):
