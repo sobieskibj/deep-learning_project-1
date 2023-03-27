@@ -22,11 +22,11 @@ if __name__ == '__main__':
         'transforms': {
             'dict_path': ['dataset', 'transform'],
             'values': [
-                # transforms.Compose([ # basic augmentation
-                #     transforms.RandomHorizontalFlip(),
-                #     transforms.ColorJitter(),
-                #     transforms.RandomRotation(10)
-                # ]),
+                transforms.Compose([ # basic augmentation
+                    transforms.RandomHorizontalFlip(),
+                    transforms.ColorJitter(),
+                    transforms.RandomRotation(10)
+                ]),
                 transforms.Compose([ # basic + random erasing augmentation
                     transforms.RandomHorizontalFlip(),
                     transforms.ColorJitter(),
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         },
         'seeds': {
             'dict_path': ['dataset', 'seed'],
-            'values': [2]
+            'values': [0]
         }, ## training process related ##
         'lrs': { 
             'dict_path': ['training', 'learning_rate'],
