@@ -7,7 +7,7 @@ import torchvision.transforms as transforms
 import sys
 sys.path.append("./")
 from pytorch_dataset.kaggle_cifar_10_dataset import KaggleCIFAR10Dataset
-from models.linear import LinearNet
+from models.mobilenet_v2 import mobilenet_v2, MobileNetV2
 from utils.utils import set_seeds, get_num_of_params, make_configs, run
 
 if __name__ == '__main__':
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     ENTITY = 'bj_team'
     GROUP = 'exp_1'
     NAME = 'linear'
-    SAVE_PATH = os.path.join(ROOT, 'weights', 'exp1')
+    SAVE_PATH = os.path.join(ROOT, 'weights', 'adaquant')
 
 
     base_config = {
